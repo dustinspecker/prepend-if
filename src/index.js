@@ -15,10 +15,10 @@ function defaultCondition(string, prependString) {
  * @throws {TypeError} - if string or prependString is not a string
  * @param {String} string - string to prepend text to if condition is true
  * @param {String} prependString - string that should be prepended to string
- * @param {Function} condition - if true, prepend string to string
+ * @param {Function} [condition=defaultCondition] - if true, prepend string to string
  * @return {String} - string with prependString if condition is true, otherwise just string
  */
-export default function prependIf(string, prependString, condition) {
+export default function prependIf(string, prependString, condition = defaultCondition) {
   if (typeof string !== 'string' || typeof prependString !== 'string') {
     throw new TypeError('Expected a string');
   }
@@ -27,13 +27,5 @@ export default function prependIf(string, prependString, condition) {
     throw new TypeError('Expected a function');
   }
 
-  if (!condition) {
-    condition = defaultCondition;
-  }
-
-  if (condition(string, prependString)) {
-    return prependString + string;
-  }
-
-  return string;
+  return condition(string, prependString) ? prependString + string : string;
 }
