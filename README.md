@@ -21,6 +21,12 @@ prependIf('world', 'hello ');
 prependIf('hello', 'he');
 // => 'hello'
 
+prependIf('world', 'hello ', true);
+// => 'hello world'
+
+prependIf('world', 'hello ', false);
+// => 'world'
+
 function customCondition(string, prependString) {
   return string.length > prependString.length;
 }
@@ -41,6 +47,12 @@ prependIf('world', 'hello ');
 
 prependIf('hello', 'he');
 // => 'hello'
+
+prependIf('world', 'hello ', true);
+// => 'hello world'
+
+prependIf('world', 'hello ', false);
+// => 'world'
 
 function customCondition(string, prependString) {
   return string.length > prependString.length;
@@ -71,9 +83,11 @@ String to prepend to string if condition is true.
 
 #### condition
 
-Type: `function`
+Type: `function` || `boolean`
 
 Function to evaluate to determine if string should be prepended with prependString. condition is given string and prependString as parameters. `Default` condition checks if string starts with prependString. If not, prependString is prepended to string.
+
+Condition may also be a `boolean`. If `true`, string is prepended with prependString, otherwise it is not.
 
 ## LICENSE
 MIT © [Dustin Specker](https://github.com/dustinspecker)

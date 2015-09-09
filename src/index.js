@@ -23,8 +23,12 @@ export default function prependIf(string, prependString, condition = defaultCond
     throw new TypeError('Expected a string');
   }
 
-  if (condition && typeof condition !== 'function') {
-    throw new TypeError('Expected a function');
+  if (condition && typeof condition !== 'function' && typeof condition !== 'boolean') {
+    throw new TypeError('Expected a boolean or function');
+  }
+
+  if (typeof condition === 'boolean') {
+    return condition ? prependString + string : string;
   }
 
   return condition(string, prependString) ? prependString + string : string;

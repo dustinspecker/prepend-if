@@ -20,15 +20,15 @@ describe('prepend-if', () => {
     expect(test).to.throw(TypeError, /Expected a string/);
   });
 
-  it('should throw TypeError if customCondition is passed but not a function', () => {
+  it('should throw TypeError if customCondition is passed but not a function or boolean', () => {
     function test() {
       prependIf('hello', 'hi', []);
     }
 
-    expect(test).to.throw(TypeError, /Expected a function/);
+    expect(test).to.throw(TypeError, /Expected a boolean or function/);
   });
 
-  describe('default condition', () => {
+  describe('default condition function', () => {
     it('should not prepend if condition is false', () => {
       expect(prependIf('hello', 'he')).to.eql('hello');
     });
@@ -38,17 +38,27 @@ describe('prepend-if', () => {
     });
   });
 
-  describe('custom condition', () => {
+  describe('custom condition function', () => {
     function customCondition(string, prependString) {
       return string.length > prependString.length;
     }
 
-    it('should prepend if customCondition is true', () => {
+    it('should prepend if customCondition returns true', () => {
       expect(prependIf('longer', 'short', customCondition)).to.eql('shortlonger');
     });
 
-    it('should prepend if customCondition is false', () => {
+    it('should prepend if customCondition returns false', () => {
       expect(prependIf('short', 'longer', customCondition)).to.eql('short');
+    });
+  });
+
+  describe('custom condition boolean', () => {
+    it('should prepend if customCondition is true', () => {
+      expect(prependIf('world', 'hello ', true)).to.eql('hello world');
+    });
+
+    it('should not prepend if customCondition is false', () => {
+      expect(prependIf('world', 'hello ', false)).to.eql('world');
     });
   });
 });
