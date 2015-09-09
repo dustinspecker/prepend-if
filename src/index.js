@@ -1,11 +1,10 @@
 'use strict';
 
 /**
- * If string doesn't start with prependString, prepend prependString to string.
- * Else return string
+ * Determine if string should be prepended with prependString
  * @param {String} string - string to prepend, conditionally
  * @param {String} prependString - string to prepend to string if string doesn't start with prependString
- * @return {String} - string starting with prependString
+ * @return {Boolean} - should string be prepended with prependString?
  */
 function defaultCondition(string, prependString) {
   return string.indexOf(prependString) !== 0;
