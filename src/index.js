@@ -1,4 +1,5 @@
 'use strict';
+import mutliTypeof from 'multi-typeof';
 
 /**
  * Determine if string should be prepended with prependString
@@ -23,7 +24,7 @@ export default function prependIf(string, prependString, condition = defaultCond
     throw new TypeError('Expected a string');
   }
 
-  if (condition && typeof condition !== 'function' && typeof condition !== 'boolean') {
+  if (condition && !mutliTypeof(condition, ['boolean', 'function'])) {
     throw new TypeError('Expected a boolean or function');
   }
 
