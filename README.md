@@ -89,5 +89,8 @@ Function to evaluate to determine if string should be prepended with prependStri
 
 Condition may also be a `boolean`. If `true`, string is prepended with prependString, otherwise it is not.
 
+## Related
+- [append-if](https://github.com/dustinspecker/append-if)
+
 ## LICENSE
 MIT © [Dustin Specker](https://github.com/dustinspecker)
