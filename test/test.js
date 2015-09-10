@@ -47,7 +47,7 @@ describe('prepend-if', () => {
       expect(prependIf('longer', 'short', customCondition)).to.eql('shortlonger');
     });
 
-    it('should prepend if customCondition returns false', () => {
+    it('should not prepend if customCondition returns false', () => {
       expect(prependIf('short', 'longer', customCondition)).to.eql('short');
     });
   });
