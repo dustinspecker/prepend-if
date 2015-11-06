@@ -19,7 +19,7 @@ function defaultCondition(string, prependString) {
  * @param {Function} [condition=defaultCondition] - if true, prepend string to string
  * @return {String} - string with prependString if condition is true, otherwise just string
  */
-export default function prependIf(string, prependString, condition = defaultCondition) {
+module.exports = function (string, prependString, condition = defaultCondition) {
   if (typeof string !== 'string' || typeof prependString !== 'string') {
     throw new TypeError('Expected a string');
   }
@@ -33,4 +33,4 @@ export default function prependIf(string, prependString, condition = defaultCond
   }
 
   return condition(string, prependString) ? prependString + string : string;
-}
+};
