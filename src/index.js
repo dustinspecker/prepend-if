@@ -1,5 +1,5 @@
-'use strict';
-import mutliTypeof from 'multi-typeof';
+'use strict'
+import mutliTypeof from 'multi-typeof'
 
 /**
  * Determine if string should be prepended with prependString
@@ -7,9 +7,7 @@ import mutliTypeof from 'multi-typeof';
  * @param {String} prependString - string to prepend to string if string doesn't start with prependString
  * @return {Boolean} - should string be prepended with prependString?
  */
-function defaultCondition(string, prependString) {
-  return string.indexOf(prependString) !== 0;
-}
+const defaultCondition = (string, prependString) => string.indexOf(prependString) !== 0
 
 /**
  * Prepend a string if a condition is met
@@ -21,16 +19,16 @@ function defaultCondition(string, prependString) {
  */
 module.exports = function (string, prependString, condition = defaultCondition) {
   if (typeof string !== 'string' || typeof prependString !== 'string') {
-    throw new TypeError('Expected a string');
+    throw new TypeError('Expected a string')
   }
 
   if (condition && !mutliTypeof(condition, ['boolean', 'function'])) {
-    throw new TypeError('Expected a boolean or function');
+    throw new TypeError('Expected a boolean or function')
   }
 
   if (typeof condition === 'boolean') {
-    return condition ? prependString + string : string;
+    return condition ? prependString + string : string
   }
 
-  return condition(string, prependString) ? prependString + string : string;
-};
+  return condition(string, prependString) ? prependString + string : string
+}
